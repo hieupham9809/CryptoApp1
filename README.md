@@ -15,3 +15,4 @@ Kiểm tra tính toàn vẹn: như trên
 
 http://photonkit.com/getting-started/ => hỗ trợ giao diện cho app
 https://electronjs.org/ => viết app với nền tàngr 
+lib crypto JS : https://gist.github.com/jo/8619441
