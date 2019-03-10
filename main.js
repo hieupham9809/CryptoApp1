@@ -1,9 +1,13 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
-const Photon = require("electron-photon");
+//const Photon = require("electron-photon")
+const DataStore = require('./DataStore.js')
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+
+const data = new DataStore({name: 'Info'})
 
 function createWindow () {
   // Create the browser window.
@@ -17,7 +21,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
-
+  
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 
