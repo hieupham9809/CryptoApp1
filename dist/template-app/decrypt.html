@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+<style>
+    a {
+      color: #000   ;
+        text-decoration: none !important;
+    }
+    </style>>
+
+<head>
+    <title>XH3 Crypto</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/photon.min.css">
+
+    <!-- Javascript -->
+    <script src="js/menu.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div class="window">
+
+      <!-- .toolbar-header sits at the top of your app -->
+      <header class="toolbar toolbar-header">
+        <h1 class="title">XH3 Crypto</h1>
+      </header>
+
+      <!-- Your app's content goes inside .window-content -->
+      <div class="window-content">
+        <div class="pane-group">
+          <div class="pane pane-sm sidebar">
+            <nav class="nav-group">
+              <h5 class="nav-group-title">Option</h5>
+              <span class="nav-group-item ">
+                <span class="icon icon-home"></span>
+                <a href="home.html">Home</a>
+              </span>              
+              </span><span class="nav-group-item">
+                <span class="icon icon-key active"></span>
+                <a href="encrypt.html">Encrypt</a>
+              </span><span class="nav-group-item active">
+                <span class="icon icon-lock-open"></span>
+                Decrypt
+              </span>
+            </nav>
+          </div>
+
+
+          <div class="pane"> 
+              <br>Show a file-select field which allows only one file to be chosen:<br><br>
+              <form action="/action_page.php">
+                Select a folder: <input type="file" webkitdirectory mozdirectory /><br><br>
+                <!-- <input type="submit"> -->
+                <button onclick="func">Decrypt</button>
+              </form>
+            
+              <br>
+
+              <a href="path/to/file" download>Download file!</a>
+              
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

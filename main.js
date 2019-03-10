@@ -16,8 +16,10 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadURL('file://' + __dirname + '/dist/template-app/home.html');
+  // mainWindow.loadURL('file://' + __dirname + '/dist/template-app/encrypt.html');
 
+ 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 
@@ -44,11 +46,17 @@ app.on('window-all-closed', function () {
   }
 })
 
-app.on('activate', function () {
+app.on('activate', function (req,res) {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
     createWindow()
+    // var AES = require("crypto-js/aes");
+    // var SHA256 = require("crypto-js/sha256");
+    // console.log(SHA256("Message"));
+    // var CryptoJS = require("crypto-js");
+    // console.log(CryptoJS.HmacSHA1("Message", "Key"));
+    // res.write (SHA256("Message") )
   }
 })
 
