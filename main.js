@@ -5,9 +5,6 @@ const {app, BrowserWindow} = require('electron');
 const DataStore = require('./DataStore.js');
 //const AesCryptor = require('./symetric.js');
 const Safe = require('./safe');
-var encryptor = require('file-encryptor');
-var key = 'My Super Secret Key';
-var options = { algorithm: 'aes-256-gcm' };
 //var safe = new Safe("./near.png", "my-password");
 
 var passwordHash = require('password-hash');
@@ -36,14 +33,10 @@ function createWindow () {
   }
   
   
-  // safe.encryptAsync(data).then(result => {
-  //   return safe.decryptAsync();
-  // });
-  
   //Safe.encrypt_aes256cbc('./near.png','mypassword');
   //console.log("completed");
-  Safe.decrypt_aes256cbc('./near/near.png.crypted','mypassword','./near/hash_code.txt');
-  console.log("completed");
+  // Safe.decrypt_aes256cbc('./near/near.png.crypted','mypassword','./near/hash_code.txt');
+  // console.log("completed");
   
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
