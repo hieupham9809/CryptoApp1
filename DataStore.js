@@ -7,7 +7,9 @@ class DataStore extends Store{
         super(settings)
         this.infos = this.get('infos') || {psw: passwordHash.generate("000000"),filePath:[]}    
     }
-
+    getHashPassword(){
+        return this.infos.psw
+    }
     saveInfo(){
         // save user info (username and password in to json file)
         this.set('infos',this.infos)

@@ -1,13 +1,23 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+//https://www.npmjs.com/package/file-encrypt
+const {app, BrowserWindow} = require('electron');
 //const Photon = require("electron-photon")
-const DataStore = require('./DataStore.js')
+const DataStore = require('./DataStore.js');
+//const AesCryptor = require('./symetric.js');
+const Safe = require('./safe');
+var encryptor = require('file-encryptor');
+var key = 'My Super Secret Key';
+var options = { algorithm: 'aes-256-gcm' };
+//var safe = new Safe("./near.png", "my-password");
 
+var passwordHash = require('password-hash');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
 const data = new DataStore({name: 'Info'})
+
+
 
 function createWindow () {
   // Create the browser window.
@@ -20,8 +30,20 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
-  data.saveInfo()
+  if (passwordHash.verify("000000",data.getHashPassword())){
+    mainWindow.loadFile('index.html')
+    data.saveInfo()
+  }
+  
+  
+  // safe.encryptAsync(data).then(result => {
+  //   return safe.decryptAsync();
+  // });
+  
+  //Safe.encrypt_aes256cbc('./near.png','mypassword');
+  //console.log("completed");
+  Safe.decrypt_aes256cbc('./near/near.png.crypted','mypassword','./near/hash_code.txt');
+  console.log("completed");
   
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()

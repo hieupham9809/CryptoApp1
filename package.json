@@ -17,7 +17,12 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
+    "crypto": "^1.0.1",
+    "crypto-fs": "^0.8.0",
     "electron": "^4.0.7",
-    "electron-prebuilt-compile": "^4.0.0"
+    "electron-prebuilt-compile": "^4.0.0",
+    "electron-store": "^2.0.0",
+    "file-encryptor": "^0.1.1",
+    "password-hash": "^1.2.2"
   }
 }
