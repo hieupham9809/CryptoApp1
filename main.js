@@ -32,7 +32,11 @@ function createWindow () {
     data.saveInfo()
   }
   
+  Safe.generateKeys('./key');
+  //Safe.encrypt_rsa('./key.txt','./public.xml');
+  //Safe.decrypt_rsa('./key/key.txt.crypted','./private.xml','./key/hash_code.txt')
   
+
   //Safe.encrypt_aes256cbc('./near.png','mypassword','/media/minhhieu/DATA/HOC/MM&ANM/Ass1');
   //Safe.encrypt_aes256cbc('./near.png','./key.txt');
   //console.log("completed");
