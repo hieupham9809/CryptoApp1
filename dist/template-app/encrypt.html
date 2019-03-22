@@ -83,9 +83,9 @@
                 </div>
               </div> -->
 
-              <form action="/action_page.php" id="Hash_type">
-                Type: <select name="carlist" form="carform">
-                    <option value="Symetric">Symetric</option>
+              <form id="Hash_type">
+                Type: <select name="hashtype" form="hashtype">
+                    <option value="AES">AES</option>
                     <option value="RSA">RSA</option>
                     <option value="Type 1 ">Volvo</option>              
                   </select>
@@ -97,8 +97,10 @@
                     Select a file to encrypt: <input type="file" name="myFile"><br>
                     Select a key file: <input type="file" name="myFile"><br>
                     <!-- <input type="submit"> -->
+
+                    Select a folder to save:  <input type="file" id="flup" onchange="getfolder(event)" webkitdirectory mozdirectory msdirectory odirectory directory multiple /><br>
                   </form>                               
-                  <button onclick="encrypt">Encrypt</button>
+                  <button onclick="encrypt()">Encrypt</button>
               <!-- <button onclick="func" data-toggle="modal" data-target="#myModal">Encrypt</button> -->
 
               <!-- Modal -->
@@ -129,14 +131,14 @@
                 <div id = "encrypt_success" class="alert alert-success alert-dismissible fade in "  >
                   <a href="#" class="close" data-dismiss="alert" aria-label="close" aria-hidden="true">&times;</a>
                   <strong>Encrypt successfully!</strong>
-                  <p><a id="destination_path" href="path/to/file" download>Save file!</a></p>
+                  <!-- <p><a id="destination_path" href="E:\3rd\ADA\Midterm" download>Save file!</a></p> -->
                 </div>
-                <div id = "encrypt_fail" class="alert alert-info alert-dismissible fade in">
+                <!-- <div id = "encrypt_fail" class="alert alert-info alert-dismissible fade in">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close" aria-hidden="true">&times;</a>
-                  <strong>Encrypt Fail!</strong>
-                </div>
+                  <strong>Encrypt Fail!</strong>                  
+                </div> -->
+                                
               </div>           
-
           </div>
           
         </div>
@@ -145,15 +147,27 @@
   </body>
   <script>
       document.getElementById("encrypt_success").style.display = "none";
-      document.getElementById("encrypt_fail").style.display = "";
-    
+      // document.getElementById("encrypt_fail").style.display = "none";
+      
       function show_Alert(success){
-          if (success == True){
+          if (success == true){
             document.getElementById("encrypt_success").style.display = "";
           }
           else{
-            document.getElementById("encrypt_fail").style.display = ""; 
+            return;
+            // document.getElementById("encrypt_fail").style.display = ""; 
           }
       }
+      function getfolder(e) {
+          var files = e.target.files;
+          var path = files[0].webkitRelativePath;
+          var Folder = path.split("/");
+          return path;
+      }
+      function encrypt(){
+          console.log(document.getElementById("hashtype").value)
+          show_Alert(true );
+      }
+        
   </script>
 </html>
