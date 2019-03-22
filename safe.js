@@ -9,9 +9,10 @@ class Safe {
     //     this.password = password;
     //     this.encName = encName;
     //   }
-    static encrypt_aes256cbc(filePath,password) {
+    static encrypt_aes256cbc(filePath,passwordFile,outputPath=path.dirname(filePath)) {
         try {
             var data = fs.readFileSync(filePath);
+            var password = fs.readFileSync(passwordFile);
             var loc = path.dirname(filePath);
             var fileName = path.basename(filePath);
             var newFolder = path.basename(filePath,path.extname(filePath));
@@ -22,11 +23,11 @@ class Safe {
             var hashedValue = hash.digest('hex');
 
             fs.unlinkSync(filePath);
-            if (!fs.existsSync(path.join(loc,newFolder))){
-                fs.mkdirSync(path.join(loc,newFolder));
+            if (!fs.existsSync(path.join(outputPath,newFolder))){
+                fs.mkdirSync(path.join(outputPath,newFolder));
             }
-            fs.writeFileSync(path.join(loc, newFolder, fileName + ext), encrypted);
-            fs.writeFileSync(path.join(loc, newFolder, 'hash_code.txt'), hashedValue);
+            fs.writeFileSync(path.join(outputPath, newFolder, fileName + ext), encrypted);
+            fs.writeFileSync(path.join(outputPath, newFolder, 'hash_code.txt'), hashedValue);
 
             return true;
             } catch (exception) {
@@ -34,13 +35,13 @@ class Safe {
             }
       }
     
-    static decrypt_aes256cbc(filePath,password,hashPath) {
+    static decrypt_aes256cbc(filePath,passwordFile,hashPath) {
         try {
             var data = fs.readFileSync(filePath);
             var checkHashValue = fs.readFileSync(hashPath);
             let loc = path.dirname(filePath);
             var fileName = path.basename(filePath).split(".");
-
+            var password = fs.readFileSync(passwordFile);
             fileName.splice(-1, 1);
             fileName = fileName.join(".");
             var decipher = Crypto.createDecipher("aes-256-cbc", password);
@@ -66,7 +67,7 @@ class Safe {
             throw new Error(exception.message);
             }
         }
-
+    
 }
 
 module.exports = Safe;

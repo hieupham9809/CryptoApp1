@@ -22,5 +22,8 @@
     "electron-prebuilt-compile": "^4.0.0",
     "electron-store": "^2.0.0",
     "password-hash": "^1.2.2"
+  },
+  "dependencies": {
+    "fs-extra": "^7.0.1"
   }
 }
