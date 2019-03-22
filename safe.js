@@ -28,7 +28,7 @@ class Safe {
             fs.writeFileSync(path.join(loc, newFolder, fileName + ext), encrypted);
             fs.writeFileSync(path.join(loc, newFolder, 'hash_code.txt'), hashedValue);
 
-            return { message: "Encrypted!" };
+            return true;
             } catch (exception) {
             throw new Error(exception.message);
             }
