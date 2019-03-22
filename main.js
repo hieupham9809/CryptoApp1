@@ -6,7 +6,7 @@ const DataStore = require('./DataStore.js');
 //const AesCryptor = require('./symetric.js');
 const Safe = require('./safe');
 //var safe = new Safe("./near.png", "my-password");
-
+const Directory = require('./directory');
 var passwordHash = require('password-hash');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -33,11 +33,12 @@ function createWindow () {
   }
   
   
-  //Safe.encrypt_aes256cbc('./near.png','mypassword');
+  //Safe.encrypt_aes256cbc('./near.png','mypassword','/media/minhhieu/DATA/HOC/MM&ANM/Ass1');
+  //Safe.encrypt_aes256cbc('./near.png','./key.txt');
   //console.log("completed");
-  // Safe.decrypt_aes256cbc('./near/near.png.crypted','mypassword','./near/hash_code.txt');
+  //Safe.decrypt_aes256cbc('./near/near.png.crypted','./key.txt','./near/hash_code.txt');
   // console.log("completed");
-  
+  //Directory.move('/media/minhhieu/DATA/HOC/MM&ANM/Ass1/CryptoApp1/near','/media/minhhieu/DATA/HOC/MM&ANM/Ass1');
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 
