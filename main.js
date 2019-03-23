@@ -33,6 +33,7 @@ function createWindow () {
   }
   
   Safe.encrypt_blowfish('./near.png','./key.txt');
+  Safe.decrypt_blowfish('./near/near.png.crypted','./key.txt','./near/hash_code.txt');
   //Safe.encrypt_rsa('./key.txt','./public.xml');
   //Safe.decrypt_rsa('./key/key.txt.crypted','./private.xml','./key/hash_code.txt')
   

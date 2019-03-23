@@ -9,6 +9,8 @@ if (success !== true) {
     console.log("RSA component unlock failed");
     return;
 }
+
+
 class Safe {
 
     // constructor(filePath, password, encName = false) {
@@ -19,11 +21,18 @@ class Safe {
     static encrypt_blowfish(filePath, passwordFile, outputPath=path.dirname(filePath)){
         try {
                 var crypt = new chilkat.Crypt2();
-                var success = crypt.UnlockComponent("Anything for 30-day trial");
-                if (success !== true) {
+                var success1 = crypt.UnlockComponent("Anything for 30-day trial");
+                if (success1 !== true) {
                     console.log(crypt.LastErrorText);
                     return;
                 }
+                crypt.CryptAlgorithm = "blowfish2";
+                crypt.CipherMode = "ecb";
+                crypt.KeyLength = 256;
+                crypt.EncodingMode = "hex";
+                const ivHex = "0001020304050607";
+                crypt.SetEncodedIV(ivHex,"hex");
+                
                 const absolutePathKey = path.resolve(passwordFile);
                 const absolutePathFile = path.resolve(filePath);
                 const absoluteParentOutputPath = path.resolve(outputPath);
@@ -31,14 +40,9 @@ class Safe {
                 var newFolder = path.basename(filePath,path.extname(filePath));
                 const absoluteOutputPath = path.join(absoluteParentOutputPath,newFolder);
                 var data = fs.readFileSync(absolutePathFile)
-                crypt.CryptAlgorithm = "blowfish2";
-                crypt.CipherMode = "cfb";
-                crypt.KeyLength = 256;
-                crypt.EncodingMode = "hex";
+                
 
                 // The block size of the blowfish algoirthm is 8 bytes, therefore the IV is 8 bytes.
-                var ivHex = "0001020304050607";
-                crypt.SetEncodedIV(ivHex,"hex");
         
                 // The secret key must equal the size of the key.  For
                 // 256-bit encryption, the binary secret key is 32 bytes.
@@ -55,14 +59,14 @@ class Safe {
                 if (!fs.existsSync(absoluteOutputPath)){
                     fs.mkdirSync(absoluteOutputPath);
                 }
-                success = crypt.CkEncryptFile(absolutePathFile,path.join(absoluteOutputPath,fileName + ext));
+                success1 = crypt.CkEncryptFile(absolutePathFile,path.join(absoluteOutputPath,fileName + ext));
                 fs.writeFileSync(path.join(absoluteOutputPath, 'hash_code.txt'), hashedValue);
 
                 if (crypt.LastMethodSuccess !== true) {
                     console.log(crypt.LastErrorText);
                     return;
                 }
-                
+                //crypt.CkDecryptFile(path.join(absoluteOutputPath,fileName + ext),path.join(absoluteOutputPath,fileName));
 
                 fs.unlinkSync(absolutePathFile);
                 
@@ -74,8 +78,55 @@ class Safe {
 
            
     }
-    static decrypt_blowfish(filePath,passwordFile,hashPath){
+    static decrypt_blowfish(filePath,keyPath,hashPath){
+        const absolutePathKey = path.resolve(keyPath)
+        const absolutePathFile = path.resolve(filePath)
+        const absoluteHashFile = path.resolve(hashPath)
+        let loc = path.dirname(absolutePathFile);
+        var fileName = path.basename(absolutePathFile).split(".");
+        //var data = fs.readFileSync(absolutePathFile);
         
+        var decrypt = new chilkat.Crypt2();
+        var success2 = decrypt.UnlockComponent("Anything for 30-day trial");
+        if (success2 !== true) {
+            console.log(decrypt.LastErrorText);
+            return;
+        }
+        var keyHex = fs.readFileSync(absolutePathKey);
+        const ivHex = "0001020304050607";
+
+        decrypt.CryptAlgorithm = "blowfish2";
+        decrypt.CipherMode = "ecb";
+        decrypt.KeyLength = 256;
+        decrypt.EncodingMode = "hex";
+        decrypt.SetEncodedIV = (ivHex,"hex");
+        decrypt.SetEncodedKey(keyHex,"hex");
+
+        console.log(absolutePathFile);
+        var checkHashValue = fs.readFileSync(absoluteHashFile);
+        fileName.splice(-1, 1);
+        fileName = fileName.join(".");
+        console.log(fileName);
+        var decrypted = decrypt.CkDecryptFile(absolutePathFile,path.join(loc,fileName));
+        if (decrypt.LastMethodSuccess !== true) {
+            console.log(decrypt.LastErrorText);
+            return;
+        }
+        var hashDecryptedFile = fs.readFileSync(path.join(loc,fileName));
+        var hash = Crypto.createHash('sha256');
+        hash.update(hashDecryptedFile);
+
+        if (checkHashValue.toString() !== hash.digest('hex').toString()){
+            throw new Error("Wrong hash value, please check again!");
+        }
+        fs.unlinkSync(absolutePathFile);
+        fs.unlinkSync(absoluteHashFile);
+        if (fileName.split(".").slice(-1)[0] == "enc") {
+            fileName.split(".").splice(-1, 1);
+            fileName = new Buffer(fileName, "hex").toString();
+            console.log(fileName);
+        }
+
     }
     static generateKeys(outputPath) {
        
