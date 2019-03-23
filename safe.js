@@ -16,6 +16,67 @@ class Safe {
     //     this.password = password;
     //     this.encName = encName;
     //   }
+    static encrypt_blowfish(filePath, passwordFile, outputPath=path.dirname(filePath)){
+        try {
+                var crypt = new chilkat.Crypt2();
+                var success = crypt.UnlockComponent("Anything for 30-day trial");
+                if (success !== true) {
+                    console.log(crypt.LastErrorText);
+                    return;
+                }
+                const absolutePathKey = path.resolve(passwordFile);
+                const absolutePathFile = path.resolve(filePath);
+                const absoluteParentOutputPath = path.resolve(outputPath);
+                var fileName = path.basename(filePath);
+                var newFolder = path.basename(filePath,path.extname(filePath));
+                const absoluteOutputPath = path.join(absoluteParentOutputPath,newFolder);
+                var data = fs.readFileSync(absolutePathFile)
+                crypt.CryptAlgorithm = "blowfish2";
+                crypt.CipherMode = "cfb";
+                crypt.KeyLength = 256;
+                crypt.EncodingMode = "hex";
+
+                // The block size of the blowfish algoirthm is 8 bytes, therefore the IV is 8 bytes.
+                var ivHex = "0001020304050607";
+                crypt.SetEncodedIV(ivHex,"hex");
+        
+                // The secret key must equal the size of the key.  For
+                // 256-bit encryption, the binary secret key is 32 bytes.
+                //var keyHex = "603deb1015ca71be2b73aef0857d77811f352c073b6108d72d9810a30914dff4";
+                var keyHex = fs.readFileSync(absolutePathKey);
+                crypt.SetEncodedKey(keyHex,"hex");
+
+                // Hash file
+                var hash = Crypto.createHash('sha256');
+                hash.update(data);
+                var hashedValue = hash.digest('hex');
+
+                
+                if (!fs.existsSync(absoluteOutputPath)){
+                    fs.mkdirSync(absoluteOutputPath);
+                }
+                success = crypt.CkEncryptFile(absolutePathFile,path.join(absoluteOutputPath,fileName + ext));
+                fs.writeFileSync(path.join(absoluteOutputPath, 'hash_code.txt'), hashedValue);
+
+                if (crypt.LastMethodSuccess !== true) {
+                    console.log(crypt.LastErrorText);
+                    return;
+                }
+                
+
+                fs.unlinkSync(absolutePathFile);
+                
+
+                return true;
+            } catch (exception) {
+            throw new Error(exception.message);
+            }
+
+           
+    }
+    static decrypt_blowfish(filePath,passwordFile,hashPath){
+        
+    }
     static generateKeys(outputPath) {
        
         success = rsa.GenerateKey(1024);

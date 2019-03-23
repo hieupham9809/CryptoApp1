@@ -32,7 +32,7 @@ function createWindow () {
     data.saveInfo()
   }
   
-  Safe.generateKeys('./key');
+  Safe.encrypt_blowfish('./near.png','./key.txt');
   //Safe.encrypt_rsa('./key.txt','./public.xml');
   //Safe.decrypt_rsa('./key/key.txt.crypted','./private.xml','./key/hash_code.txt')
   
