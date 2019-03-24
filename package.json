@@ -24,6 +24,7 @@
     "password-hash": "^1.2.2"
   },
   "dependencies": {
+    "@chilkat/ck-node11-linux64": "^9.50.77",
     "fs-extra": "^7.0.1"
   }
 }
