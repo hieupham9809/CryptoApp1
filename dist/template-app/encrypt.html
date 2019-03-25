@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-
-
 <html>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
@@ -175,25 +173,26 @@
         cute = document.getElementById("desPath").value;
         cute1 = document.getElementById("myFile").value;
         cute2 = document.getElementById("keyFile").value;
+          // window.Safe = Safe;
+          // let s=new Safe();
         debugger;
-        // window.Safe = Safe;
-        // let s=new Safe();
-        // result = (s.encrypt_aes256cbc(cute1,cute2,cute));
-        // alert (result);
-        alert(cute1 + cute2);
-        result = (Safe.encrypt_aes256cbc(cute1,cute2,cute));
+        result = (Safe.encrypt_aes256cbc('./File.txt','./KeyFile.txt','./Test'));
+
         alert (result);
+
+        // result = (Safe.encrypt_aes256cbc(cute1,cute2,cute));
+        // alert (result);
 
 
         // show_Alert(true );
-          // require("../../safe.js");
-          var e = document.getElementById("hashtype");
-          var hashtype = e.options[e.selectedIndex].value;
-          // if (hashtype == "AES"){
-          //     result = (Safe.encrypt_aes256cbc(cute1,cute2,cute));
-          //     alert (result);
+        // require("../../safe.js");
+        var e = document.getElementById("hashtype");
+        var hashtype = e.options[e.selectedIndex].value;
+        // if (hashtype == "AES"){
+        //     result = (Safe.encrypt_aes256cbc(cute1,cute2,cute));
+        //     alert (result);
 
-          // }
+        // }
       }
       
   </script>
