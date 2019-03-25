@@ -32,12 +32,12 @@ function createWindow () {
     data.saveInfo()
   }
   
-  Safe.encrypt_blowfish('./near.png','./key.txt');
-  Safe.decrypt_blowfish('./near/near.png.crypted','./key.txt','./near/hash_code.txt');
+  // Safe.encrypt_blowfish('./near.png','./key.txt');
+  // Safe.decrypt_blowfish('./near/near.png.crypted','./key.txt','./near/hash_code.txt');
   //Safe.encrypt_rsa('./key.txt','./public.xml');
   //Safe.decrypt_rsa('./key/key.txt.crypted','./private.xml','./key/hash_code.txt')
   
-
+  // Safe.encrypt_aes256cbc('./File (copy).txt','./key.txt','./Test');
   //Safe.encrypt_aes256cbc('./near.png','mypassword','/media/minhhieu/DATA/HOC/MM&ANM/Ass1');
   //Safe.encrypt_aes256cbc('./near.png','./key.txt');
   //console.log("completed");

@@ -7,7 +7,7 @@ var rsa = new chilkat.Rsa();
 var success = rsa.UnlockComponent("Anything for 30-day trial");
 if (success !== true) {
     console.log("RSA component unlock failed");
-    return;
+    // return false;
 }
 
 
@@ -127,9 +127,11 @@ class Safe {
             console.log(fileName);
         }
 
+        return true;
+
     }
     static generateKeys(outputPath) {
-       
+       debugger;
         success = rsa.GenerateKey(1024);
         if (success !== true) {
             console.log(rsa.LastErrorText);
@@ -141,7 +143,8 @@ class Safe {
 
         fs.writeFileSync(path.join(outputPath,'private.xml'), privateKey)
         fs.writeFileSync(path.join(outputPath,'public.xml'), publicKey)
-        console.log("Generates keys completed")
+        console.log("Generates keys completed");
+        return true;
     }
     static encrypt_rsa(filePath, relativeOrAbsolutePathToPublicKey,outputPath=path.dirname(filePath)) {
         const absolutePathKey = path.resolve(relativeOrAbsolutePathToPublicKey)
@@ -209,6 +212,8 @@ class Safe {
         }
 
         fs.writeFileSync(path.join(loc, fileName), decrypted);
+
+        return true;
     }
     static encrypt_aes256cbc(filePath,passwordFile,outputPath=path.dirname(filePath)) {
         try {
@@ -263,6 +268,8 @@ class Safe {
             }
 
             fs.writeFileSync(path.join(loc, fileName), decrypted);
+
+            return true;
 
             } catch (exception) {
             throw new Error(exception.message);
