@@ -23,9 +23,9 @@
 	}
 	.bottomright {
 	  position: absolute;
-	  bottom: 8px;
+	  bottom: 2px;
 	  right: 16px;
-	  font-size: 18px;
+	  font-size: 13px;
 	}
 	.backcolor{
 		display: block;
@@ -37,12 +37,17 @@
 	}
 	p.double {
 	  border-style: double;
-	  margin-top: 70px;
+	  margin-top: 100px;
 	  margin-bottom: 100px;
 	  margin-right: 50px;
 	  margin-left: 60px;
 	  background-color: lightgrey;
 	  font-size:18px;
+	}
+	.headerr{
+		
+		margin-top:50px;
+		margin-left: 20px;
 	}
     </style>>
 
@@ -64,7 +69,7 @@
 
       <!-- .toolbar-header sits at the top of your app -->
       <header class="toolbar toolbar-header">
-					<h1 class="title">HOME</h1>
+					<h1 class="title">INFORMATION</h1>
 				</header>
 
       <!-- Your app's content goes inside .window-content -->
@@ -75,7 +80,7 @@
 									<h5 class="nav-group-title">Options</h5>
 									<span class="nav-group-item active">
 										<span class="icon icon-home"></span>
-										Home
+										<a href="home.html">Home</a>
 									</span>         
 									<span class="nav-group-item">
 											<span class="icon icon-key"></span>
@@ -110,26 +115,59 @@
 						  </div>-->
 			<div>
 							  <h1 class="alignleft">
-									<i><b>XH3 Crypto</b></i>
+									<i><b>   XH3 Crypto</b></i>
 							  </h1>
 			</div>
 			<br>
-			<div>
-			<p class="double">
-				This is a application which helps you protect your information.<br><br>
-				To use our functionalities, please log in on the right-top of this page. Remember your password, please!<br><br>
-				You can encrypt your files to avoid someone reading on your computer or send to your friends with security.<br><br>
-				When you want to read and use your encrypt files, you can decrypt them, too.<br><br>
-				If you want to have more information, please click button "More information" to read our functionalities. Thank you!!!
+			<div class="headerr">
+				<h3>    Information</h3>
+			</div>
+			<ul class="list-group">
 				
-			</p>
+				<li class="list-group-item">
+					<img class="img-circle media-object pull-left" src="aes.jpg" width="32" height="32">
+					<div class="media-body">
+						<strong>AES(Advanced Encryption Standard)</strong>
+						<p>You need to create a key file, which includes a key to server encryption.<br>
+							AES is a variant of Rijndael which has a fixed block size of 	128 bits, and a key size of <br>128, 192, or 256 bits.<br>
+							The design and strength of all key lengths of the AES algorithm (i.e., 128, 192 and 256)<br>
+							are sufficient to protect classified information up to the SECRET level. TOP SECRET <br>information
+							will require use of either the 192 or 256 key lengths.
+						</p>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<img class="img-circle media-object pull-left" src="rsa.png" width="32" height="32">
+					<div class="media-body">
+						<strong>RSA (Rivest–Shamir–Adleman)</strong>
+						<p>You need to create a key file, which includes two keys to server encryption.<br>
+							RSA is one of the first public-key cryptosystems and is widely used for secure data <br>transmission.<br>
+							RSA enVision is a security information and event management (SIEM) platform, with <br>
+							centralised log-management service that claims to "enable organisations to simplify<br>
+							 compliance process as well as optimise security-incident management as they occur.
+						</p>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<img class="img-circle media-object pull-left" src="blowfish.jpg" width="32" height="32">
+					<div class="media-body">
+						<strong>BLOWFISH</strong>
+						<p>
+								You need to create a key file, which includes two keys to server encryption.<br>
+								Blowfish is a symmetric-key block cipher, designed in 1993 by Bruce Schneier and <br>
+								included in a large number of cipher suites and encryption products. <br>
+								Blowfish was one of the first secure block ciphers not subject to any patents and <br>
+								therefore freely available for anyone to use. This benefit has contributed to its popularity<br>
+								in cryptographic software.
+						</p>
+					</div>
+				</li>
+			</ul>
 			</div>
 			<div class="bottomright">
-				<!--<button " onclick="alert('Hello world!')">More information</button>-->
-				<input type=button onClick="parent.location='more_info.html'" value='More information'>
-            </div>
-        
-      </div>
+					<!--<button " onclick="alert('Hello world!')">More information</button>-->
+					<input type=button onClick="parent.location='home.html'" value='Close'>
+							</div>
     </div>
 	</div>
   </body>

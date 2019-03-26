@@ -28,7 +28,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   if (passwordHash.verify("000000",data.getHashPassword())){
-    mainWindow.loadFile('index.html')
+    mainWindow.loadFile('./dist/template-app/home.html')
     data.saveInfo()
   }
   
